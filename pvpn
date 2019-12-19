@@ -124,7 +124,7 @@ connect_ppp() {
 
     pppd_output=$(mktemp)
     pppd updetach noauth silent nodeflate pty \
-         "/usr/bin/ssh ${SSH_ARGS} -oServerAliveInterval=55 '$ssh_host' pppd nodetach notty noauth" \
+         "/usr/bin/ssh ${SSH_ARGS} -oServerAliveInterval=55 '$ssh_host' sudo pppd nodetach notty noauth" \
          ipparam vpn "$ip_pair" >"$pppd_output" || \
             die "pppd failed (exit code $?)"
     read client_device server_device < \
